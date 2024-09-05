@@ -95,22 +95,22 @@ async def start():
     }
 
     # For OpenAI
-    # agent_kwargs = {
-    #     "model": "gpt-4o",
-    #     "server": "openai",
-    #     "temperature": 0.1
-    # }
-
-    # Claude 
     agent_kwargs = {
-        "model": "claude-3-5-sonnet-20240620",
-        "server": "claude",
+        "model": "gpt-4o",
+        "server": "openai",
         "temperature": 0.1
     }
 
+    # Claude 
+    # agent_kwargs = {
+    #     "model": "claude-3-5-sonnet-20240620",
+    #     "server": "claude",
+    #     "temperature": 0.1
+    # }
+
         # Ollama
     # agent_kwargs = {
-    #     "model": "phi3:instruct",
+    #     "model": "llama3.1:latest",
     #     "server": "ollama",
     #     "temperature": 0.1
     # }
@@ -150,6 +150,9 @@ async def start():
 
 
 def run_workflow(state):
+    if "final_answer" not in state:
+        state["final_answer"] = None  # or some default value
+    
     agent_kwargs = cl.user_session.get("agent_kwargs")
     tools_router_agent_kwargs = agent_kwargs.copy()
     tools_router_agent_kwargs["temperature"] = 0

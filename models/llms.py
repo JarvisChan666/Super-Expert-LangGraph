@@ -287,7 +287,7 @@ class OpenAIModel(BaseModel):
         super().__init__(temperature, model, json_response, max_retries, retry_delay)
         config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.yaml')
         load_config(config_path)
-        self.model_endpoint = 'https://api.openai.com/v1/chat/completions'
+        self.model_endpoint = 'https://api.302.ai/v1/chat/completions'
         self.api_key = os.getenv('OPENAI_API_KEY')
         self.headers = {
             'Content-Type': 'application/json',

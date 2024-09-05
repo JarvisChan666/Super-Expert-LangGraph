@@ -397,11 +397,11 @@ if __name__ == "__main__":
 
 
     # For Claude
-    agent_kwargs = {
-        "model": "claude-3-5-sonnet-20240620",
-        "server": "claude",
-        "temperature": 0.5
-    }
+    # agent_kwargs = {
+    #     "model": "claude-3-5-sonnet-20240620",
+    #     "server": "claude",
+    #     "temperature": 0.5
+    # }
 
     # For OpenAI
     # agent_kwargs = {
@@ -411,11 +411,11 @@ if __name__ == "__main__":
     # }
 
     # Ollama
-    # agent_kwargs = {
-    #     "model": "phi3:instruct",
-    #     "server": "ollama",
-    #     "temperature": 0.5
-    # }
+    agent_kwargs = {
+        "model": "llama3.1:latest",
+        "server": "ollama",
+        "temperature": 0.5
+    }
 
     # Groq
     # agent_kwargs = {
@@ -445,6 +445,9 @@ if __name__ == "__main__":
     def routing_function(state: State) -> str:
         decision = state["router_decision"]
         print(colored(f"\n\n Routing function called. Decision: {decision}", 'red'))
+        # Ensure a valid decision is returned
+        if decision is None:
+            return "no_tool_expert"  # or any default decision that makes sense
         return decision
 
     graph = StateGraph(State)

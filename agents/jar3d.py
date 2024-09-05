@@ -28,6 +28,8 @@ class MessageDict(TypedDict):
     role: str
     content: str
 
+# Define the State, where we keep track everything happen in workflow
+# Here are the thing that we want to record
 class State(TypedDict):
     meta_prompt: Annotated[List[MessageDict], add_messages]
     conversation_history: Annotated[List[dict], add_messages]
@@ -56,7 +58,7 @@ state: State = {
     "chat_finished": False,
     "recursion_limit": None
 }
-
+## Count chat round
 def chat_counter(state: State) -> State:
     chat_limit = state.get("chat_limit")
     if chat_limit is None:
@@ -65,6 +67,7 @@ def chat_counter(state: State) -> State:
     state["chat_limit"] = chat_limit
     return chat_limit
 
+# Decide which agent to go next
 def routing_function(state: State) -> str:
     if state["router_decision"]:
         return "no_tool_expert"
@@ -714,11 +717,11 @@ if __name__ == "__main__":
     from langgraph.graph import StateGraph
 
     # For Claude
-    agent_kwargs = {
-        "model": "claude-3-5-sonnet-20240620",
-        "server": "claude",
-        "temperature": 0.2
-    }
+    # agent_kwargs = {
+    #     "model": "claude-3-5-sonnet-20240620",
+    #     "server": "claude",
+    #     "temperature": 0.2
+    # }
 
     # For OpenAI
     # agent_kwargs = {
@@ -728,11 +731,11 @@ if __name__ == "__main__":
     # }
 
     # Ollama
-    # agent_kwargs = {
-    #     "model": "phi3:instruct",
-    #     "server": "ollama",
-    #     "temperature": 0.5
-    # }
+    agent_kwargs = {
+        "model": "3.1:latest",
+        "server": "ollama",
+        "temperature": 0.5
+    }
 
     # Groq
     # agent_kwargs = {
@@ -780,6 +783,8 @@ if __name__ == "__main__":
     graph.add_edge("meta_expert", "router")
     graph.add_edge("tool_expert", "meta_expert")
     graph.add_edge("no_tool_expert", "meta_expert")
+    # Here is the conditional edges, which is the decision of which agent to go next
+    # Go to "Tool Expert" or "No Tool Expert"
     graph.add_conditional_edges(
         "router",
         lambda state: routing_function(state),
