@@ -1,5 +1,5 @@
 
-# Meta Expert
+# Super Expert
 A project for versatile AI agents that can run with proprietary models or completely open-source. The meta expert has two agents: a basic [Meta Agent](Docs/Meta-Prompting%20Overview.MD), and [Jar3d](Docs/Introduction%20to%20Jar3d.MD), a more sophisticated and versatile agent.
 
 ## Table of Contents
@@ -39,7 +39,7 @@ This project leverages three core concepts:
 ## Repository Setup
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/brainqub3/meta_expert.git
+   git clone https://github.com/JarvisChan666/Super-Expert-LangGraph
    ```
 
 2. **Navigate to the Repository:**
