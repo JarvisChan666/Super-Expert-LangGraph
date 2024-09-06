@@ -2,6 +2,10 @@
 # Super Expert
 A project for versatile AI agents that can run with proprietary models or completely open-source. The meta expert has two agents: a basic [Meta Agent](Docs/Meta-Prompting%20Overview.MD), and [Jar3d](Docs/Introduction%20to%20Jar3d.MD), a more sophisticated and versatile agent.
 
+## TODO
+1. Memory
+2. How to focus and shift to specific business goals and can be easily implemented, then use local database to do retrieval.
+
 ## Table of Contents
 1. [Core Concepts](#core-concepts)
 2. [Prerequisites](#prerequisites)
