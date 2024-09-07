@@ -3,7 +3,9 @@
 A project for versatile AI agents that can run with proprietary models or completely open-source. The meta expert has two agents: a basic [Meta Agent](Docs/Meta-Prompting%20Overview.MD), and [Jar3d](Docs/Introduction%20to%20Jar3d.MD), a more sophisticated and versatile agent.
 
 ## TODO
-[] Memory
+[] Bug fix: could not find answer.
+[] How to embedding, how to chunking data
+[] Long-term Memory
 [] How to focus and shift to specific business goals and can be easily implemented, then use local database to do retrieval.
 [] Database Learn
 [] Add Word Counter Expert

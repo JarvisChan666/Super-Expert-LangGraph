@@ -14,7 +14,7 @@ from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
 from langchain_community.graphs import Neo4jGraph
 from langchain_experimental.graph_transformers.llm import LLMGraphTransformer
-# from langchain_community.vectorstores.neo4j_vector import Neo4jVector
+from langchain_community.vectorstores.neo4j_vector import Neo4jVector
 from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 from langchain_community.vectorstores import FAISS
 from flashrank import Ranker, RerankRequest
