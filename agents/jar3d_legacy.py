@@ -34,6 +34,7 @@ class State(TypedDict):
     conversation_history: Annotated[List[dict], add_messages]
     requirements_gathering: Annotated[List[str], add_messages]
     expert_plan: str
+    expert_words_counter: str
     expert_research: Annotated[List[str], add_messages]
     expert_writing: str
     user_input: Annotated[List[str], add_messages]
@@ -602,18 +603,18 @@ if __name__ == "__main__":
     from langgraph.graph import StateGraph
 
     # For Claude
-    agent_kwargs = {
-        "model": "claude-3-5-sonnet-20240620",
-        "server": "claude",
-        "temperature": 0.2
-    }
-
-    # For OpenAI
     # agent_kwargs = {
-    #     "model": "gpt-4o",
-    #     "server": "openai",
+    #     "model": "claude-3-5-sonnet-20240620",
+    #     "server": "claude",
     #     "temperature": 0.2
     # }
+
+    # For OpenAI
+    agent_kwargs = {
+        "model": "gpt-4o-mini",
+        "server": "openai",
+        "temperature": 0.2
+    }
 
     # Ollama
     # agent_kwargs = {
@@ -631,7 +632,7 @@ if __name__ == "__main__":
 
     # # Gemnin - Not currently working, I will be debugging this soon.
     # agent_kwargs = {
-    #     "model": "gemini-1.5-pro",
+    #     "model": "gemini-1.5-flash",
     #     "server": "gemini",
     #     "temperature": 0.5
     # }

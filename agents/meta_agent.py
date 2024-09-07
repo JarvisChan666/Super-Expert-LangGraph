@@ -407,11 +407,11 @@ if __name__ == "__main__":
     # }
 
     # For OpenAI
-    # agent_kwargs = {
-    #     "model": "gpt-4o",
-    #     "server": "openai",
-    #     "temperature": 0.1
-    # }
+    agent_kwargs = {
+        "model": "gpt-4o-mini",
+        "server": "openai",
+        "temperature": 0.3
+    }
 
     # Ollama
     # agent_kwargs = {
@@ -428,11 +428,11 @@ if __name__ == "__main__":
     # }
 
     # # Gemnin - Not currently working, I will be debugging this soon.
-    agent_kwargs = {
-        "model": "gemini-1.5-flash",
-        "server": "gemini",
-        "temperature": 0.5
-    }
+    # agent_kwargs = {
+    #     "model": "gemini-1.5-flash",
+    #     "server": "gemini",
+    #     "temperature": 0.5
+    # }
 
     # # Vllm
     # agent_kwargs = {
@@ -473,6 +473,9 @@ if __name__ == "__main__":
     )
     workflow = graph.compile()
 
+    # If we want to show state
+    verbose = True
+
     while True:
         query = input("Ask me anything: ")
         if query.lower() == "exit":
@@ -485,4 +488,7 @@ if __name__ == "__main__":
         limit = {"recursion_limit": recursion_limit}
 
         for event in workflow.stream(state, limit):
-            pass
+            if verbose:
+                print(event)
+            else:
+                print("\n")

@@ -35,6 +35,7 @@ class State(TypedDict):
     conversation_history: Annotated[List[dict], add_messages]
     requirements_gathering: Annotated[List[str], add_messages]
     expert_plan: str
+    expert_words_counter: str
     expert_research: Annotated[List[str], add_messages]
     expert_writing: str
     user_input: Annotated[List[str], add_messages]
@@ -49,6 +50,7 @@ state: State = {
     "conversation_history": [],
     "requirements_gathering": [],
     "expert_plan": [],
+    "expert_words_counter": [],
     "expert_research": [],
     "expert_writing": [],
     "user_input": [],
@@ -79,7 +81,11 @@ def set_chat_finished(state: State) -> bool:
     final_response = state["meta_prompt"][-1].content
     final_response_formatted = re.sub(r'^```python[\s\S]*?```\s*', '', final_response, flags=re.MULTILINE)
     final_response_formatted = final_response_formatted.lstrip()
-    print(colored(f"\n\n Jar3d👩‍💻: {final_response_formatted}", 'cyan'))
+    # Ensure the final response includes the required string
+    final_response_with_marker = f">> FINAL ANSWER:\n{final_response_formatted}"
+    
+    print(colored(f"\n\n Jar3d👩‍💻: {final_response_with_marker}", 'cyan'))
+    state["final_answer"] = final_response_with_marker
 
     return state
 
@@ -724,18 +730,18 @@ if __name__ == "__main__":
     # }
 
     # For OpenAI
-    # agent_kwargs = {
-    #     "model": "gpt-4o",
-    #     "server": "openai",
-    #     "temperature": 0.2
-    # }
+    agent_kwargs = {
+        "model": "gpt-4o-mini",
+        "server": "openai",
+        "temperature": 0.2
+    }
 
     # Ollama
-    agent_kwargs = {
-        "model": "3.1:latest",
-        "server": "ollama",
-        "temperature": 0.5
-    }
+    # agent_kwargs = {
+    #     "model": "3.1:latest",
+    #     "server": "ollama",
+    #     "temperature": 0.5
+    # }
 
     # Groq
     # agent_kwargs = {
@@ -746,7 +752,7 @@ if __name__ == "__main__":
 
     # # Gemnin - Not currently working, I will be debugging this soon.
     # agent_kwargs = {
-    #     "model": "gemini-1.5-pro",
+    #     "model": "gemini-1.5-flash",
     #     "server": "gemini",
     #     "temperature": 0.5
     # }

@@ -34,6 +34,7 @@ class State(TypedDict):
     conversation_history: Annotated[List[dict], add_messages]
     requirements_gathering: Annotated[List[str], add_messages]
     expert_plan: str
+    expert_words_counter: str
     expert_research: Annotated[List[str], add_messages]
     expert_writing: str
     user_input: Annotated[List[str], add_messages]
@@ -49,6 +50,7 @@ state: State = {
     "conversation_history": [],
     "requirements_gathering": [],
     "expert_plan": [],
+    "expert_words_counter": [],
     "expert_research": [],
     "expert_writing": [],
     "user_input": [],

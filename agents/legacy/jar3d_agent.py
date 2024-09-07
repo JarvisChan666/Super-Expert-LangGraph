@@ -35,6 +35,7 @@ class State(TypedDict):
     conversation_history: Annotated[List[dict], add_messages]
     requirements_gathering: Annotated[List[str], add_messages]
     expert_plan: str
+    expert_words_counter: str
     expert_research: Annotated[List[str], add_messages]
     expert_research_shopping: Annotated[List[str], add_messages]
     expert_writing: str
@@ -51,6 +52,7 @@ state: State = {
     "conversation_history": [],
     "requirements_gathering": [],
     "expert_plan": [],
+    "expert_words_counter": [],
     "expert_research": [],
     "expert_research_shopping": [],
     "expert_writing": [],
@@ -189,6 +191,10 @@ class MetaExpert(BaseAgent[State]):
         <expert_plan>
         ## Your Expert Plan:\n{state.get("expert_plan", [])}\n
         </expert_plan>
+
+        <expert_words_counter>
+        ## Your Expert Words Counter:\n{state.get("expert_words_counter", [])}\n
+        </expert_words_counter>
 
         <expert_writing>
         ## Your Expert Writing:\n{state.get("expert_writing", [])}\n

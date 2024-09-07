@@ -83,6 +83,7 @@ async def start():
     "conversation_history": [],
     "requirements_gathering": [],
     "expert_plan": [],
+    "expert_words_counter": [],
     "expert_research": [],
     "expert_writing": [],
     "user_input": [],
@@ -95,11 +96,11 @@ async def start():
     }
 
     # For OpenAI
-    # agent_kwargs = {
-    #     "model": "gpt-4o",
-    #     "server": "openai",
-    #     "temperature": 0.1
-    # }
+    agent_kwargs = {
+        "model": "gpt-4o-mini",
+        "server": "openai",
+        "temperature": 0.3
+    }
 
     # Claude 
     # agent_kwargs = {
@@ -123,11 +124,11 @@ async def start():
     # }
 
     # # Gemnin - Not currently working, I will be debugging this soon.
-    agent_kwargs = {
-        "model": "gemini-1.5-flash",
-        "server": "gemini",
-        "temperature": 0.1
-    }
+    # agent_kwargs = {
+    #     "model": "gemini-1.5-flash",
+    #     "server": "gemini",
+    #     "temperature": 0.1
+    # }
 
     # Vllm
     # agent_kwargs = {

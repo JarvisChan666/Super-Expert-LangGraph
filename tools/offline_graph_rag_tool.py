@@ -316,7 +316,7 @@ def create_graph_index(
     graph: Neo4jGraph = None,
     max_threads: int = 5
 ) -> Neo4jGraph:
-    # llm = ChatOpenAI(temperature=0, model_name="gpt-4o")
+    # llm = ChatOpenAI(temperature=0, model_name="gpt-4o-mini")
 
     llm = ChatAnthropic(temperature=0, model_name="claude-3-haiku-20240307")
 

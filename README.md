@@ -6,6 +6,7 @@ A project for versatile AI agents that can run with proprietary models or comple
 [] Memory
 [] How to focus and shift to specific business goals and can be easily implemented, then use local database to do retrieval.
 [] Database Learn
+[] Add Word Counter Expert
 
 ## Table of Contents
 1. [Core Concepts](#core-concepts)
